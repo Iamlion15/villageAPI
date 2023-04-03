@@ -9,6 +9,8 @@ exports.createUser =async (req, res, next) =>{
         
             firstName: req.body.firstName, 
             lastName: req.body.lastName, 
+            nID: req.body.nID,
+            email: req.body.email,
             phone: req.body.phone,
             password: hashPassword
         })
