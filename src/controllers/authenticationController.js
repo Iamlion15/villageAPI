@@ -39,19 +39,15 @@ class authenticationController {
         const sentOtp = req.body.otp;
         const OTP = req.session.OTP;
 
-        if (sentOtp === OTP.toString()) {
+        if (sentOtp == OTP) {
             try {
                 const user = await UserModel.findOne({ nID: nid });
                 if (!user) {
                     res.status(401).json({ "message": "user doesn't exist" });
                 } else {
-                    req.session.id = user._id;
-                    req.sessionStore.destroy("OTP", function (err) {
-                        if (err) {
-                            console.log(err)
-                            res.status(500).json({ "message": "internal server error" });
-                        }
-                    });
+                    req.session.user = user._id;
+                    delete req.session.OTP;
+                    console.log(req.session.OTP);
                     res.status(200).json({ "message": "authentication successful" })
                 }
             } catch (error) {
@@ -59,7 +55,7 @@ class authenticationController {
                 res.status(500).json({ "message": "internal server error" })
             }
         } else {
-            console.log("sent otp +" + sentOtp + "otp =" + OTP);
+            console.log("sent otp == " + sentOtp + "session otp ==" + OTP);
             res.status(401).json({ "message": "invalid OTP" });
         }
     }

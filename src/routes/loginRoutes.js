@@ -8,7 +8,7 @@ router.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 120000 
+        maxAge: 600000 
       }
   }));
 
