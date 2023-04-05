@@ -17,5 +17,6 @@ router.use(session({
 router.post("/getOTP",authenticationController.getOTP);
 router.post("/clogin",authenticationController.citizenLogin);
 router.post("/adminlogin",adminController.loginUser);
+router.post("/mdlogin",adminController.loginMudugudu);
 
 export default router;

@@ -41,6 +41,34 @@ class adminAUthentication {
             res.status(500).json({"message":"internal server error"});
         }
     }
+
+    static async loginMudugudu(req, res) {
+        const emaill = req.body.email;
+        const password = req.body.password;
+        try {
+            const user = await userModel.findOne({ email: emaill });
+            if (!user) {
+                res.status(401).json({ "message": "user not found" })
+            }
+            else {
+                if (user.role != "mudugudu") {
+                    res.status(401).json({ "message": "NO MUDUGUDU PRIVILAGE" })
+                }
+                else {
+                    let match=await compareHashedPassword(user.password,password);
+                    if (match) {
+                        res.status(200).json({ "message": "password not matching" })
+                    }
+                    else {
+                        const tk=await generateToken(emaill);
+                        res.status(200).json({ "message": "succesfully logged in",token:tk })
+                    }
+                }
+            }
+        } catch (error) {
+            res.status(500).json({"message":"internal server error"});
+        }
+    }
 }
 
 export default adminAUthentication;
