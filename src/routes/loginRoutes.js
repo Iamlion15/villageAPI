@@ -1,5 +1,6 @@
 import express from 'express';
 import authenticationController from '../controllers/authenticationController';
+import adminController from '../controllers/adminAuthController';
 import session from 'express-session';
 
 const router=express.Router();
@@ -12,7 +13,9 @@ router.use(session({
       }
   }));
 
+
 router.post("/getOTP",authenticationController.getOTP);
 router.post("/clogin",authenticationController.citizenLogin);
+router.post("/adminlogin",adminController.loginUser);
 
 export default router;

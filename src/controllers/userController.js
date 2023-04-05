@@ -1,7 +1,7 @@
 
 
 import User from './../models/user'
-import hashedPassword from './../helpers/bcrypt'
+import {hashedPassword} from './../helpers/bcrypt'
 exports.createUser =async (req, res, next) =>{
     try {
         const hashPassword = await hashedPassword(req.body.password);
