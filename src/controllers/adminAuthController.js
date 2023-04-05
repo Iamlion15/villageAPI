@@ -1,5 +1,6 @@
 import userModel from '../models/user';
 import { hashedPassword,compareHashedPassword } from '../helpers/bcrypt';
+import generateToken from '../helpers/tokenGenerator';
 
 class adminAUthentication {
     static async createUser(req, res) {
@@ -31,7 +32,8 @@ class adminAUthentication {
                         res.status(200).json({ "message": "password not matching" })
                     }
                     else {
-                        res.status(200).json({ "message": "succesfully logged in" })
+                        const tk=await generateToken(emaill);
+                        res.status(200).json({ "message": "succesfully logged in",token:tk })
                     }
                 }
             }
