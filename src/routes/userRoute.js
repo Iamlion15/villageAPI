@@ -1,4 +1,5 @@
 import express from 'express';
+import adminController from './../controllers/adminAuthController';
 import { createUser } from './../controllers/userController';
 const {getAllUsers} = require('./../controllers/userController')
 const router = express.Router();
@@ -8,5 +9,7 @@ router.route('/create')
 
 router.route('/')
       .get(getAllUsers)
+
+router.post("/adminsignup",adminController.createUser);      
 
 export default router

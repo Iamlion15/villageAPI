@@ -24,13 +24,10 @@ const userSchema = new mongoose.Schema ({
         type: String, 
         default: "citizen",
         enum: ["citizen", "mudugudu", "admin"],
-        select : false
     }, 
     password: {
         type: String, 
-       required: [true, 'Please Provide a Password'], 
         minlength: 8,
-        select: false
     }
 })
 
