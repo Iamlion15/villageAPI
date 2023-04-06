@@ -10,6 +10,6 @@ router.route('/create')
 router.route('/')
       .get(getAllUsers)
 
-router.post("/adminSignup",adminController.createUser);      
+router.post("/adminsignup",adminController.createUser);      
 
 export default router
