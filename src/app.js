@@ -8,8 +8,11 @@ const app = express();
 dbConnect()
 
 app.use(express.json());
+
 app.use('/villageAPI/users', userRouter)
 app.use('/villageAPI/auth',authenticationRoutes);
 app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(docs));
+app.use('/api/users', userRouter)
+
 
 export default app;
