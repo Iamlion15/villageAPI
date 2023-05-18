@@ -1,5 +1,5 @@
 import swaggerJDOC from 'swagger-jsdoc';
-import userRoutedocs from './user.docs';
+import userRoutedocs from './userr.docs';
 
 const options = {
     swaggerDefinition:
